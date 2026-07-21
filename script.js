@@ -6,6 +6,7 @@ const itinerary = {
     {
       day:'יום ראשון – 25.10.26',
       header:'נחיתה בזלצבורג',
+      image:'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
       items:[
         {label:'נחיתה', value:'שדה התעופה זלצבורג', link:'https://www.google.com/maps/search/?api=1&query=Salzburg+Airport+Austria'},
         {label:'השכרת רכב', value:'חברה: באדג"ט\nכתובת: Innsbrucker Bundesstraße 95, 5020 Salzburg, אוסטריה\nמספר הזמנה: 799688715', link:'https://www.google.com/maps/search/?api=1&query=Innsbrucker+Bundesstra%C3%9Fe+95+Salzburg'},
@@ -18,6 +19,7 @@ const itinerary = {
     {
       day:'יום שני – 26.10.26',
       header:'סכר מלטה ודרך נופית',
+      image:'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80',
       items:[
         {label:'נסיעה משוער', value:'כשעה וחצי לכל צד ממקום הלינה'},
         {label:'יעד', value:'סכר מלטה + Malta-Hochalm-Straße', link:'https://maps.app.goo.gl/P7SgePTDb4YiCUhj8?utm_source=copilot.com'},
@@ -29,6 +31,7 @@ const itinerary = {
     {
       day:'יום שלישי – 27.10.26',
       header:'תצפית “מדרגות לשום מקום” וגליצ\'ר',
+      image:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
       items:[
         {label:'זמן נסיעה', value:'כ־15 דקות ממקום הלינה'},
         {label:'תצפית', value:'Treppe ins Nichts — חינם עם כרטיס מקום הלינה (יש להזמין מראש)', link:'https://www.derdachstein.at/de/dachstein-gletscherwelt/gletscher-erlebnis/treppe-ins-nichts?utm_source=copilot.com'},
@@ -40,6 +43,7 @@ const itinerary = {
     {
       day:'יום רביעי – 28.10.26',
       header:'דרך נופית גרוסגלוקנר + אגם + גן חיות',
+      image:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
       items:[
         {label:'זמן נסיעה', value:'כשעה וחצי לכל צד'},
         {label:'דרך נופית', value:'נקודת יעד: 3MFV+MV Winkl, אוסטריה', link:'https://www.google.com/maps/search/?api=1&query=3MFV%2BMV+Winkl+Austria'},
@@ -51,6 +55,7 @@ const itinerary = {
     {
       day:'יום חמישי – 29.10.26',
       header:'הלשטאט, תצפית 5 אצבעות, אומגה, חזרה לשדה',
+      image:'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
       items:[
         {label:'סיור בעיירה', value:'הלשטאט — זמן נסיעה כשעה ו־15 דקות', link:'https://www.google.com/maps/search/?api=1&query=Hallstatt+Austria'},
         {label:'תצפית 5 אצבעות', value:'מחיר כניסה: 47€ לאדם (לנכה כניסה חינם, למלווה הנחה)', link:'https://dachstein-salzkammergut.com/?utm_source=copilot.com'},
@@ -87,6 +92,10 @@ function renderDay(i){
   c.innerHTML='';
   const h = createEl('h2', {class:'section-title'}, day.day+' — '+day.header)
   c.appendChild(h);
+  if(day.image){
+    const img = createEl('img',{class:'day-image',src:day.image,alt:day.header});
+    c.appendChild(img);
+  }
   day.items.forEach(it=>{
     const box = createEl('div',{class:'field'});
     const label = createEl('div',{class:'label'}, it.label || 'פריט');
