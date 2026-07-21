@@ -1,0 +1,1 @@
+Place your header image here as `header.jpg` (recommended size ~1200×400). Name must be `header.jpg` and path `assets/header.jpg` to be used by the site.
