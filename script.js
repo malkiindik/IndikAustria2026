@@ -67,6 +67,25 @@ const itinerary = {
   ]
 };
 
+const meals = {
+  dinner: {
+    'יום ראשון': 'בצלאל קונה הלו תימן — לפי הזמנות אישיות',
+    'יום שני': 'שניצל עוף (אבא) — אורז מקושט',
+    'יום שלישי': 'בקר של שמואל — בתוספת פירה של סבא + בצל מטוגן',
+    'יום רביעי': 'חזה עוף של אלעזר — אורז מקושט',
+    'יום חמישי': 'שווארמה של בצלאל בפיתה',
+    'הערה': 'בצלאל מכין מרק ירקות ביום שני לכל הימים'
+  },
+  lunch: {
+    'יום ראשון': 'אלעזר קונה מאפים בבית שמש',
+    'יום שני': 'פיתות עם חביתות באחריות אלעזר',
+    'יום שלישי': 'פיתות חומוס ופסטרמה באחריות שמואל',
+    'יום רביעי': 'פיתות עם חביתות באחריות מאירי',
+    'יום חמישי': 'שווארמה של בצלאל',
+    'הערה': 'שמואל מביא את השוקולדים של שירה הכינה'
+  }
+};
+
 function el(q, c=document){return c.querySelector(q)}
 function createEl(tag, attrs={}, txt=''){const e=document.createElement(tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt) e.textContent=txt;return e}
 
@@ -78,6 +97,49 @@ function renderDays(){
     list.appendChild(btn);
   });
   selectDay(0);
+}
+
+function renderMeals(){
+  // clear active on day buttons
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
+  // mark meals button active
+  const mealsBtn = el('#mealsBtn');
+  mealsBtn.classList.add('active');
+
+  const c = el('#content');
+  c.innerHTML='';
+  const h = createEl('h2',{class:'section-title'}, 'ארוחות — תפריט חודשי');
+  c.appendChild(h);
+
+  const dinnerTitle = createEl('h3',{}, 'ארוחת ערב');
+  c.appendChild(dinnerTitle);
+  const dl = createEl('div',{});
+  for(const day of ['יום ראשון','יום שני','יום שלישי','יום רביעי','יום חמישי']){
+    const box = createEl('div',{class:'field'});
+    const label = createEl('div',{class:'label'}, day);
+    const val = createEl('div',{}, meals.dinner[day] || '-');
+    box.appendChild(label);
+    box.appendChild(val);
+    dl.appendChild(box);
+  }
+  const note = createEl('div',{class:'field'}, meals.dinner['הערה']);
+  dl.appendChild(note);
+  c.appendChild(dl);
+
+  const lunchTitle = createEl('h3',{}, 'ארוחות צהריים');
+  c.appendChild(lunchTitle);
+  const ll = createEl('div',{});
+  for(const day of ['יום ראשון','יום שני','יום שלישי','יום רביעי','יום חמישי']){
+    const box = createEl('div',{class:'field'});
+    const label = createEl('div',{class:'label'}, day);
+    const val = createEl('div',{}, meals.lunch[day] || '-');
+    box.appendChild(label);
+    box.appendChild(val);
+    ll.appendChild(box);
+  }
+  const note2 = createEl('div',{class:'field'}, meals.lunch['הערה']);
+  ll.appendChild(note2);
+  c.appendChild(ll);
 }
 
 function selectDay(index){
@@ -116,6 +178,8 @@ function renderDay(i){
 function init(){
   renderDays();
   el('#printBtn').addEventListener('click', ()=>window.print());
+  const mealsBtn = el('#mealsBtn');
+  if(mealsBtn) mealsBtn.addEventListener('click', renderMeals);
 }
 
 window.addEventListener('DOMContentLoaded', init);
