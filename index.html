@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>תוכנית טיול משפחתי — זלצבורג & שָלדמינג</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>תוכנית טיול משפחתי — כבד את אביך ואת אימך</h1>
+    <div class="meta">25.10.26–29.10.26 | זלצבורג – שלדמינג והסביבה</div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h2>ימים</h2>
+      <nav id="daysList" class="days-list" aria-label="רשימת ימים"></nav>
+      <div class="actions">
+        <button id="downloadBtn">הורדת מסמך JSON</button>
+        <button id="printBtn">הדפסה</button>
+      </div>
+    </aside>
+
+    <section id="content" class="content">
+      <!-- day content injected by script.js -->
+    </section>
+  </main>
+
+  <footer>
+    <small>נוצר אוטומטית — דף דינמי לטיול</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
